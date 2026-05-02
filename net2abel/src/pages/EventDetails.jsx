@@ -1,17 +1,19 @@
 // src/pages/EventDetails.jsx
 
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { initialEvents } from "../data/events";
+import { useEvents } from "../context/EventContext";
 
 function EventDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { registeredEvents, registerEvent } = useEvents();
 
-  // find the event that matches the id in the URL
   const event = initialEvents.find((e) => e.id === Number(id));
 
-  // if no event found
+  // check if already registered
+  const isRegistered = registeredEvents.includes(Number(id));
+
   if (!event) {
     return (
       <div className="text-center mt-5">
@@ -24,7 +26,7 @@ function EventDetails() {
   }
 
   return (
-    <div className="container mt-5 ">
+    <div className="container mt-5">
       <button
         className="btn btn-outline-secondary mb-4"
         onClick={() => navigate(-1)}
@@ -42,8 +44,13 @@ function EventDetails() {
         <p>{event.description}</p>
         <p><strong>Available Seats:</strong> {event.seats}</p>
 
-        <button className="btn btn-primary mt-3" style={{ width: "fit-content" }}>
-          Register
+        <button
+          className={`btn mt-3 ${isRegistered ? "btn-success" : "btn-primary"}`}
+          style={{ width: "fit-content" }}
+          onClick={() => registerEvent(Number(id))}
+          disabled={isRegistered}
+        >
+          {isRegistered ? "✓ Registered" : "Register"}
         </button>
       </div>
     </div>
