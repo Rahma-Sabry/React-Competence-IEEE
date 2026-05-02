@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 function NavbarComponent() {
   return (
     <Navbar 
-  style={{ backgroundColor: "#05398e" }} 
+  style={{ backgroundColor: "#788BFF" }} 
   expand="lg" 
   data-bs-theme="dark"
   fixed = "top"
