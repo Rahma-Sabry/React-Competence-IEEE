@@ -12,7 +12,9 @@ function Home() {
             Teegi Net2abel? Discover events, create your own, and connect with others.
           </p>
 
-          <button style={styles.button}>Explore Events</button>
+          <button style={styles.button} onClick={() => window.location.href = "/events"}>
+            Explore Events
+          </button>
         </section>
 
       </div>
@@ -22,6 +24,7 @@ function Home() {
         {initialEvents.map((event) => (
           <div className="col-md-3" key={event.id}>
             <EventCard
+            id={event.id} 
               title={event.title}
               category={event.category}
               date={event.date}

@@ -1,6 +1,14 @@
 // src/components/EventCard.jsx
 
-function EventCard({ title, category, date, location, description }) {
+import { useNavigate } from "react-router-dom";
+import { useEvents } from "../context/EventContext";
+
+function EventCard({ id, title, category, date, time, location, description }) {
+  const navigate = useNavigate();
+  const { registeredEvents, registerEvent } = useEvents();
+
+  const isRegistered = registeredEvents.includes(id);
+
   return (
     <div className="card h-100 shadow-sm">
       <div className="card-body">
@@ -14,9 +22,9 @@ function EventCard({ title, category, date, location, description }) {
         {/* Title */}
         <h5 className="card-title fw-bold">{title}</h5>
 
-        {/* Date + Location */}
+        {/* Date + Time + Location */}
         <h6 className="card-subtitle mb-2 text-muted" style={{ fontSize: "0.85rem" }}>
-          {date} | {location}
+          {date} | {time} | {location}
         </h6>
 
         {/* Description */}
@@ -26,8 +34,20 @@ function EventCard({ title, category, date, location, description }) {
 
         {/* Buttons */}
         <div className="d-flex justify-content-between align-items-center mt-3">
-          <button className="btn btn-sm btn-outline-secondary">Details</button>
-          <button className="btn btn-sm btn-primary">Register</button>
+          <button
+            className="btn btn-sm btn-outline-secondary"
+            onClick={() => navigate(`/events/${id}`)}
+          >
+            Details
+          </button>
+
+          <button
+            className={`btn btn-sm ${isRegistered ? "btn-success" : "btn-primary"}`}
+            onClick={() => registerEvent(id)}
+            disabled={isRegistered}
+          >
+            {isRegistered ? "✓ Registered" : "Register"}
+          </button>
         </div>
 
       </div>
