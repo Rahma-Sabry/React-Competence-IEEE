@@ -5,9 +5,10 @@ import { useEvents } from "../context/EventContext";
 
 function EventCard({ id, title, category, date, time, location, description }) {
   const navigate = useNavigate();
-  const { registeredEvents, registerEvent } = useEvents();
+  const { registeredEvents, registerEvent, favorites, toggleFavorite } = useEvents();
 
   const isRegistered = registeredEvents.includes(id);
+  const isFavorited = favorites.includes(id);
 
   return (
     <div className="card h-100 shadow-sm">
@@ -16,7 +17,12 @@ function EventCard({ id, title, category, date, time, location, description }) {
         {/* Top row: badge + heart */}
         <div className="d-flex justify-content-between align-items-center mb-2">
           <span className="badge bg-primary">{category}</span>
-          <button className="btn btn-sm border-0">🤍</button>
+          <button
+            className="btn btn-sm border-0"
+            onClick={() => toggleFavorite(id)}
+          >
+            {isFavorited ? "❤️" : "🤍"}
+          </button>
         </div>
 
         {/* Title */}
