@@ -1,12 +1,22 @@
-<<<<<<< HEAD
-// src/pages/Home.jsx
-
 import EventCard from "../components/Eventcard";
 import { initialEvents } from "../data/events";
-
 function Home() {
   return (
-    <div className="container mt-4">
+    <>
+
+      <div >
+        
+        <section style={styles.hero}>
+          <h1 style={styles.title}>Welcome to Net2abel</h1>
+          <p style={styles.subtitle}>
+            Teegi Net2abel? Discover events, create your own, and connect with others.
+          </p>
+
+          <button style={styles.button}>Explore Events</button>
+        </section>
+
+      </div>
+      <div className="container mt-4">
       <div className="row g-3">
 
         {initialEvents.map((event) => (
@@ -23,29 +33,6 @@ function Home() {
 
       </div>
     </div>
-  );
-}
-
-=======
-import NavbarComponent from "../components/Navbar";
-
-function Home() {
-  return (
-    <>
-      <NavbarComponent />
-
-      <div >
-        
-        <section style={styles.hero}>
-          <h1 style={styles.title}>Welcome to Net2abel</h1>
-          <p style={styles.subtitle}>
-            Teegi Net2abel? Discover events, create your own, and connect with others.
-          </p>
-
-          <button style={styles.button}>Explore Events</button>
-        </section>
-
-      </div>
     </>
   );
 }
@@ -86,5 +73,4 @@ const styles = {
   },
 };
 
->>>>>>> 29a1cb8f9217da9e3579acc3bc4b610483c93f78
 export default Home;
