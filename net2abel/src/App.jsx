@@ -14,7 +14,7 @@ function App() {
       <NavbarComponent />
       <div>
         <Routes>
-          <Route path="/Home" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/Events" element={<Events />} />
           <Route path="/CreateEvent" element={<CreateEvent />} />
           <Route path="/MyEvents" element={<MyEvents />} />
